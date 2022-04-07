@@ -3,6 +3,7 @@ package br.com.promocerva.users.controller
 import br.com.promocerva.users.config.R2DBCConfig
 import br.com.promocerva.users.domain.User
 import br.com.promocerva.users.repository.UserRepository
+import br.com.promocerva.users.repository.UserRepositoryTest
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.coEvery
 import io.mockk.coVerify

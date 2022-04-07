@@ -13,7 +13,7 @@ class User(
     @Column("LOCATION_X") var locationX: Double,
     @Column("LOCATION_Y") var locationY: Double,
     @Column("DISTANCE") var distance: Double,
-    @Id @Column("ID") val id: Long? = null
+    @Id @Column("ID") var id: Long? = null
 ) {
     fun update(user: UserDTO): User {
         return apply {
@@ -23,6 +23,5 @@ class User(
             locationY = user.location.second
             distance = user.distance
         }
-
     }
 }
