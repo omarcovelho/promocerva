@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "b8a42d4a-0524-4386-ad4b-45730546202d",
+		"name": "Sales",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sales-uri}}",
+					"host": [
+						"{{sales-uri}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"IPA Rolleta Russa\",\n    \"store\": \"Comercial\",\n    \"address\": \"R. São João, 8184 - Bosque dos Eucaliptos, São José dos Campos - SP, 12233-190\",\n    \"location\": [-55.2374925,-45.8892112]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sales-uri}}",
+					"host": [
+						"{{sales-uri}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Eisenbahn IPA Lata\",\n    \"store\": \"Comercial Del Ligado\",\n    \"address\": \"R. São João, 8184 - Bosque dos Eucaliptos, São José dos Campos - SP, 12233-190\",\n    \"location\": [-22.2374925,-42.8892112]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sales-uri}}/624eec2745993261f5ba491b",
+					"host": [
+						"{{sales-uri}}"
+					],
+					"path": [
+						"624eec2745993261f5ba491b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descricao\": \"Eisenbahn IPA Lata\",\n    \"loja\": \"Comercial Del Rey\",\n    \"endereco\": \"R. São João Del Rei, 350 - Bosque dos Eucaliptos, São José dos Campos - SP, 12233-190\",\n    \"localizacao\": [-23.2374925,-45.8892112]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sales-uri}}/624eec2745993261f5ba491b",
+					"host": [
+						"{{sales-uri}}"
+					],
+					"path": [
+						"624eec2745993261f5ba491b"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

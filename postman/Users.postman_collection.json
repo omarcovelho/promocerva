@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "9d003484-ddc8-4e6b-b819-d34cda2a70ef",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{users-url}}",
+					"host": [
+						"{{users-url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Marco Prado\",\n    \"email\": \"marco.prado@gmail.com\",\n    \"address\": \"Rua Lafayete, 255\",\n    \"location\": [-23.2374925,-45.8892112],\n    \"distance\": 10.5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{users-url}}",
+					"host": [
+						"{{users-url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Marco Silva Prado\",\n    \"email\": \"marco.silva.prado@gmail.com\",\n    \"address\": \"Rua Lafayete Braz da Cunha, 255\",\n    \"location\": [-25.2374925,-44.8892112],\n    \"distance\": 15.5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{users-url}}/3",
+					"host": [
+						"{{users-url}}"
+					],
+					"path": [
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{users-url}}/2",
+					"host": [
+						"{{users-url}}"
+					],
+					"path": [
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
