@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
 
 @RestController
-@RequestMapping("/sales")
+@RequestMapping("/api/sales")
 class SaleController(private val saleRepository: SaleRepository) {
 
     @GetMapping

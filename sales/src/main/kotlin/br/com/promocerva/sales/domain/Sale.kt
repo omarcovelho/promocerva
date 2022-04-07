@@ -12,7 +12,7 @@ data class Sale(
     var store: String,
     var address: String,
     var location: GeoJsonPoint,
-    @Id val id: String = ObjectId.get().toHexString()
+    @Id val id: String? = null
 ) {
     fun update(sale: SaleDTO): Sale {
         return apply {

@@ -1,4 +1,4 @@
-package br.com.promocerva
+package br.com.promocerva.sales
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

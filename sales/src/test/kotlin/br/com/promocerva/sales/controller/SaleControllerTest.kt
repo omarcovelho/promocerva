@@ -3,6 +3,7 @@ package br.com.promocerva.sales.controller
 import br.com.promocerva.sales.domain.Sale
 import br.com.promocerva.sales.repository.SaleRepository
 import com.ninjasquad.springmockk.MockkBean
+import io.mockk.InternalPlatformDsl.toStr
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -36,7 +37,7 @@ internal class SaleControllerTest(@Autowired val client: WebTestClient) {
                 "624ced940a9479336901a254"
             ),
         )
-        client.get().uri("/sales").exchange()
+        client.get().uri("/api/sales").exchange()
             .expectStatus().isOk
             .expectBody()
                 .jsonPath("$.length()").isEqualTo(2)
@@ -44,9 +45,11 @@ internal class SaleControllerTest(@Autowired val client: WebTestClient) {
 
     @Test
     fun `should create a new sale`() {
-        coEvery { repository.save(any()) } returnsArgument 0
+        coEvery { repository.save(any()) } answers {
+            with(firstArg<Sale>()) { Sale(description, store, address, location, "abcd") }
+        }
         val request = """{"description":"description","store":"store","address":"address","location":[0.0,1.0]}"""
-        client.post().uri("/sales").contentType(MediaType.APPLICATION_JSON).bodyValue(request)
+        client.post().uri("/api/sales").contentType(MediaType.APPLICATION_JSON).bodyValue(request)
             .exchange()
             .expectStatus().isCreated
             .expectBody()
@@ -54,7 +57,8 @@ internal class SaleControllerTest(@Autowired val client: WebTestClient) {
                 .jsonPath("$.store").isEqualTo("store")
                 .jsonPath("$.address").isEqualTo("address")
                 .jsonPath("$.location").isArray
-                .jsonPath("$.id").isNotEmpty
+                .jsonPath("$.id").isEqualTo("abcd")
+            .returnResult().toString().let { print(it) }
         coVerify { repository.save(any()) }
     }
 
@@ -68,7 +72,7 @@ internal class SaleControllerTest(@Autowired val client: WebTestClient) {
         )
         coEvery { repository.save(any()) } returnsArgument 0
         val request = """{"description":"description","store":"store","address":"address","location":[0.0,1.0]}"""
-        client.put().uri("/sales/abcd").contentType(MediaType.APPLICATION_JSON).bodyValue(request)
+        client.put().uri("/api/sales/abcd").contentType(MediaType.APPLICATION_JSON).bodyValue(request)
             .exchange()
             .expectStatus().isOk
             .expectBody()
@@ -83,7 +87,7 @@ internal class SaleControllerTest(@Autowired val client: WebTestClient) {
     @Test
     fun `should delete a sale`() {
         coEvery { repository.deleteById(any()) } returns Unit
-        client.delete().uri("/sales/abcd")
+        client.delete().uri("/api/sales/abcd")
             .exchange()
             .expectStatus().isNoContent
         coVerify { repository.deleteById(eq("abcd")) }
