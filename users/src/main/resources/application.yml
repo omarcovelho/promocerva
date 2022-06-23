@@ -1,0 +1,5 @@
+spring:
+  r2dbc.url: r2dbc:postgresql://r2dbc:1234@localhost:5432/promocervausers
+  cloud.stream:
+    source: newUser
+    bindings.newUser.destination: newuser

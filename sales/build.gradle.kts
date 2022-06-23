@@ -15,10 +15,14 @@ repositories {
 	mavenCentral()
 }
 
+extra["springCloudVersion"] = "2021.0.1"
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
+	implementation("org.springframework.cloud:spring-cloud-stream")
+	implementation("org.springframework.cloud:spring-cloud-starter-stream-rabbit")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -27,8 +31,16 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(module = "mockito-core")
 	}
+	implementation("io.projectreactor.tools:blockhound:1.0.6.RELEASE")
 	testImplementation("com.ninja-squad:springmockk:3.0.1")
 	testImplementation("io.projectreactor:reactor-test")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-debug")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+	}
 }
 
 tasks.withType<KotlinCompile> {

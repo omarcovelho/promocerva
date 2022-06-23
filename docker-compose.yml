@@ -1,0 +1,33 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 9001:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
+  
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: r2dbc
+      POSTGRES_DB: promocervausers
+
+  adminer:
+    image: adminer
+    ports:
+      - 9002:8080
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 15672:15672
+      - 5672:5672
